@@ -37,7 +37,7 @@ feat: add Hadamard gate
 fix: correct gate validation
 test: add qubit state tests
 refactor: simplify gate representation
-docs: update installation quide
+docs: update installation guide
 ```
 
 ## Code Style
