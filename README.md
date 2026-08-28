@@ -39,7 +39,7 @@ print(qubit.state)
 - [X] Qubit
 - [X] Gate abstraction
 - [X] Basic quantum gates
-- [ ] Parametric gates
+- [X] Parametric gates
 - [ ] Multi-qubit operations
 - [ ] Measurement
 - [ ] Quantum circuits
