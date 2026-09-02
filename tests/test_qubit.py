@@ -133,3 +133,40 @@ def test_probabilities_complex_state():
         qubit.probabilities,
         [0.5, 0.5]
     )
+
+
+def test_measure_zero_state():
+    qubit = Qubit([1, 0])
+
+    assert qubit.measure() == 0
+    np.testing.assert_allclose(qubit.state, [1, 0])
+
+
+def test_measure_one_state():
+    qubit = Qubit([0, 1])
+
+    assert qubit.measure() == 1
+    np.testing.assert_allclose(qubit.state, [0, 1])
+
+
+def test_measure_superposition():
+    results = set()
+
+    for _ in range(100):
+        qubit = Qubit()
+        qubit.apply_gate(H)
+        results.add(qubit.measure())
+
+    assert results == {0, 1}
+
+
+def test_measure_collapses_state():
+    qubit = Qubit()
+    qubit.apply_gate(H)
+
+    result = qubit.measure()
+
+    if result == 0:
+        np.testing.assert_allclose(qubit.state, [1, 0])
+    else:
+        np.testing.assert_allclose(qubit.state, [0, 1])

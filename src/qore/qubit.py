@@ -39,5 +39,15 @@ class Qubit:
     def set_state(self, state) -> None:
         self.state = self._validate_state(state)
 
+    def measure(self) -> int:
+        result = int(np.random.choice([0, 1], p=self.probabilities))
+
+        self.state = np.array(
+            [1, 0] if result == 0 else [0, 1],
+            dtype=np.complex128
+        )
+
+        return result
+
     def __repr__(self) -> str:
         return f"Qubit(state={self.state})"
