@@ -1,6 +1,7 @@
 import numpy as np
 
 from .gate import Gate
+from .gates import H
 
 class Qubit:
     def __init__(self, state: None | list | np.ndarray =None):
@@ -48,6 +49,20 @@ class Qubit:
         )
 
         return result
+
+    @classmethod
+    def superposition(cls) -> "Qubit":
+        qubit = cls()
+        qubit.apply_gate(H)
+        return qubit
+
+    @classmethod
+    def zero(cls) -> "Qubit":
+        return cls([1, 0])
+
+    @classmethod
+    def one(cls) -> "Qubit":
+        return cls([0, 1])
 
     def __repr__(self) -> str:
         return f"Qubit(state={self.state})"

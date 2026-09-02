@@ -170,3 +170,24 @@ def test_measure_collapses_state():
         np.testing.assert_allclose(qubit.state, [1, 0])
     else:
         np.testing.assert_allclose(qubit.state, [0, 1])
+
+
+def test_zero():
+    qubit = Qubit.zero()
+
+    np.testing.assert_allclose(qubit.state, [1, 0])
+
+
+def test_one():
+    qubit = Qubit.one()
+
+    np.testing.assert_allclose(qubit.state, [0, 1])
+
+
+def test_superposition():
+    qubit = Qubit.superposition()
+
+    np.testing.assert_allclose(
+        qubit.state,
+        [1 / np.sqrt(2), 1 / np.sqrt(2)]
+    )
