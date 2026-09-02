@@ -26,6 +26,10 @@ class Qubit:
 
         return state
 
+    @property
+    def probabilities(self) -> np.ndarray:
+        return np.abs(self.state) ** 2
+
     def apply_gate(self, gate: Gate) -> None:
         if gate.num_qubits != 1:
             raise ValueError("A single Qubit can only apply singe-qubit gates.")

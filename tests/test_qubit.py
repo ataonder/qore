@@ -91,3 +91,45 @@ def test_set_state_invalid_normalization():
 
     with pytest.raises(ValueError):
         qubit.set_state([1, 1])
+
+
+def test_probabilities_zero_state():
+    qubit = Qubit([1, 0])
+
+    np.testing.assert_allclose(
+        qubit.probabilities,
+        [1.0, 0.0]
+    )
+
+
+def test_probabilities_one_state():
+    qubit = Qubit([0, 1])
+
+    np.testing.assert_allclose(
+        qubit.probabilities,
+        [0.0, 1.0]
+    )
+
+
+def test_probabilities_superposition():
+    qubit = Qubit([
+        1 / np.sqrt(2),
+        1 / np.sqrt(2)
+    ])
+
+    np.testing.assert_allclose(
+        qubit.probabilities,
+        [0.5, 0.5]
+    )
+
+
+def test_probabilities_complex_state():
+    qubit = Qubit([
+        1 / np.sqrt(2),
+        1j / np.sqrt(2)
+    ])
+
+    np.testing.assert_allclose(
+        qubit.probabilities,
+        [0.5, 0.5]
+    )
